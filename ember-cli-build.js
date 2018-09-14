@@ -4,12 +4,7 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
-    'ember-font-awesome': {
-      useScss: true // for ember-cli-sass
-    },
-    'ember-cli-foundation-6-sass': {
-      foundationJs: 'all'
-    }
+    // Add options here
   });
 
   // Use `app.import` to add additional libraries to the generated
