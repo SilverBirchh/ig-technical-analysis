@@ -1,0 +1,41 @@
+<div class="login_header flex">IG Technical Analysis</div>
+<div class="layout-row layout-xs-column flex">
+  <div class="layout-column flex layout-align-center">
+    {{#paper-card class="login_box" as |card|}}
+      {{#card.title class="login_title" as |title|}}
+        {{#title.text as |text|}}
+          {{#text.headline}}Login{{/text.headline}}
+          {{#text.subhead}}
+            In order to login you must have an IG account and accompanying API key. You can create an account at <a href="www.ig.com" target="_blank">IG.com</a>.
+          {{/text.subhead}}
+        {{/title.text}}
+      {{/card.title}}
+      {{#card.actions}}
+        {{#paper-form class="flex-100" onSubmit=(action "login") as |form|}}
+          <div class="layout layout-column">
+            {{#paper-select
+              label="Environment"
+              options=envs
+              selected=userEnv
+              onChange=(action (mut userEnv))
+              as |env|}}
+              {{env}}
+            {{/paper-select}}
+          </div>
+          <div class="layout layout-column">
+            {{paper-input class="flex-100" required=true label="Username" value=username onChange=(action (mut username))}}
+          </div>
+          <div class="layout layout-column">
+            {{paper-input class="flex-100" required=true label="Password" value=password onChange=(action (mut password))}}
+          </div>
+          <div class="layout layout-column">
+            {{paper-input class="flex-100" required=true label="API Key" value=apiKey onChange=(action (mut apiKey))}}
+          </div>
+          <div class="layout-column">
+            {{#form.submit-button raised=true primary=true}}Submit{{/form.submit-button}}
+          </div>
+          {{/paper-form}}
+      {{/card.actions}}
+    {{/paper-card}}
+  </div>
+</div>

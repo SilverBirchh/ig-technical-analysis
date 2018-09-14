@@ -1,0 +1,22 @@
+.login {
+  &_header {
+    background-color: paper-color($primary, "200");
+    padding: 20px 0;
+    text-align: center;
+    color: $white;
+    font-size: 25px;
+    font-weight: 300;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+  &_box {
+    margin-top: 85px;
+  }
+
+  &_title {
+    text-align: center;
+    font-weight: bold;
+  }
+}
