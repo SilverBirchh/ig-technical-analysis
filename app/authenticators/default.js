@@ -7,7 +7,9 @@ export default Base.extend({
   },
 
   authenticate(identifier, password, apiKey, userEnv) {
-    return fetch("https://demo-api.ig.com/gateway/deal/session", {
+    const domain = this.envToDomain(userEnv);
+    const url = domain ? `https://${domain}-api.ig.com` : `https://api.ig.com`;
+    return fetch(`${url}/gateway/deal/session`, {
       method: "post",
       headers: {
         Accept: "application/json; charset=UTF-8",
@@ -23,6 +25,19 @@ export default Base.extend({
   },
 
   _exportTokens(response) {
-    return RSVP.reject(new Error("error"));
+    return RSVP.reject(new Error(response));
+  },
+
+  envToDomain(env) {
+    switch (env) {
+      case "Test":
+        return "net";
+      case "UAT":
+        return "web";
+      case "Demo":
+        return "demo";
+      default:
+        "";
+    }
   }
 });

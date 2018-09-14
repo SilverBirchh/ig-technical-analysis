@@ -1,9 +1,11 @@
 import Component from "@ember/component";
 import { inject as service } from "@ember/service";
-import { getProperties } from "@ember/object";
+import { getProperties, set } from "@ember/object";
 
 export default Component.extend({
   session: service(),
+
+  error: false,
 
   classNames: ["login"],
 
@@ -19,6 +21,7 @@ export default Component.extend({
 
   actions: {
     login() {
+      set(this, "error", false);
       const { username, password, apiKey, userEnv } = getProperties(
         this,
         "username",
@@ -35,7 +38,12 @@ export default Component.extend({
           apiKey,
           userEnv
         )
-        .catch(err => console.log("ERR =>", err));
+        .then(() => this.transitionToAccount.bind(this))
+        .catch(err => set(this, "error", true));
     }
+  },
+
+  transitionToAccount() {
+    this.transitionTo("account");
   }
 });

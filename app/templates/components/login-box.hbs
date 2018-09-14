@@ -12,6 +12,11 @@
       {{/card.title}}
       {{#card.actions}}
         {{#paper-form class="flex-100" onSubmit=(action "login") as |form|}}
+          {{#if error}}
+            <div class="layout layout-column login_error">
+              Hmm. Looks like something went wrong. Please try again.
+            </div>
+          {{/if}}
           <div class="layout layout-column">
             {{#paper-select
               label="Environment"
