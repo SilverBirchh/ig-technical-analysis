@@ -1,0 +1,12 @@
+{{#paper-toolbar}}
+  {{#paper-toolbar-tools}}
+  {{#paper-sidenav-toggle name="left" as |toggleAction|}}
+    {{#paper-button iconButton=true classNames="hide-gt-sm" onClick=(action toggleAction)}}
+      {{paper-icon "menu"}}
+    {{/paper-button}}
+  {{/paper-sidenav-toggle}}
+    <h2>
+      IG Market Analysis
+    </h2>
+  {{/paper-toolbar-tools}}
+{{/paper-toolbar}}

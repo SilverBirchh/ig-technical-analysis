@@ -7,7 +7,6 @@ export default Base.extend({
   session: service(),
 
   restore(data) {
-    console.log(data);
     return data.xst ? RSVP.resolve(data) : RSVP.reject(data);
   },
 

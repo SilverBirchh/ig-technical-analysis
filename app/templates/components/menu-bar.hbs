@@ -1,0 +1,16 @@
+<div class="layout-row layout-xs-column flex layout-align-center menu">
+  {{#paper-sidenav-container class="inner-sidenav"}}
+    {{#paper-sidenav
+      class="md-whiteframe-z2"
+      name="left"
+      open=leftSideBarOpen
+      onToggle=(action (mut leftSideBarOpen))}}
+      {{#paper-toolbar as |toolbar|}}
+        {{#paper-toolbar-tools}}Menu{{/paper-toolbar-tools}}
+      {{/paper-toolbar}}
+      {{#paper-content padding=true}}
+        {{#paper-button warn=true class="menu_btn" onClick=(action "logout")}}Log out{{/paper-button}}
+      {{/paper-content}}
+    {{/paper-sidenav}}
+  {{/paper-sidenav-container}}
+</div>
