@@ -5,10 +5,11 @@ module.exports = function(environment) {
     modulePrefix: "ig-technical-analysis",
     environment,
     rootURL: "/",
-    locationType: "auto",
+    locationType: "hash",
     "ember-simple-auth": {
       routeAfterAuthentication: "/account",
-      routeIfAlreaduAuthenticated: "/account"
+      routeIfAlreadyAuthenticated: "/account",
+      authenticationRoute: "/"
     },
     EmberENV: {
       FEATURES: {
