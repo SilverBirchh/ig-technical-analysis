@@ -1,0 +1,31 @@
+<div class="layout layout-column">
+  {{paper-input
+    class="flex-100"
+    label="Market"
+    placeholder="Market search"
+    value=market
+    onChange=(action (pipe (action (mut market)) (perform searchMarkets)))
+  }}
+
+  {{#if results}}
+    {{#paper-card as |card|}}
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+          {{#text.headline class="layout-row layout-align-space-between"}}
+            Please choose a market to chart
+          {{/text.headline}}
+          {{#text.subhead}}
+            {{#each results.markets as |market|}}
+                {{#link-to 'account.charts.chart' market.epic tagName='p'}}
+                  {{market.instrumentName}} - {{market.expiry}}
+                {{/link-to}}
+              {{paper-divider}}
+            {{/each}}
+          {{/text.subhead}}
+        {{/title.text}}
+      {{/card.title}}
+
+    {{/paper-card}}
+  {{/if}}
+</div>
+{{outlet}}

@@ -10,13 +10,13 @@ export default Service.extend({
     const { session } = this;
 
     const lsClient = new Lightstreamer.LightstreamerClient(
-      session.session.content.authenticated.lsEndPoint
+      session.data.authenticated.lightstreamerEndpoint
     );
     lsClient.connectionDetails.setUser(
-      session.session.content.authenticated.currentAccountId
+      session.data.authenticated.currentAccountId
     );
-    let password = `CST-${session.session.content.authenticated.cstToken}|XST-${
-      session.session.content.authenticated.ssoToken
+    let password = `CST-${session.data.authenticated.cst}|XST-${
+      session.data.authenticated.xst
     }`;
     lsClient.connectionDetails.setPassword(password);
 
