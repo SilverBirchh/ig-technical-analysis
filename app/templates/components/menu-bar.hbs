@@ -6,9 +6,13 @@
       open=leftSideBarOpen
       onToggle=(action (mut leftSideBarOpen))}}
       {{#paper-toolbar as |toolbar|}}
-        {{#paper-toolbar-tools}}Menu{{/paper-toolbar-tools}}
+        {{#paper-toolbar-tools class="layout-align-center"}}Menu{{/paper-toolbar-tools}}
       {{/paper-toolbar}}
       {{#paper-content padding=true}}
+        {{#paper-button class="menu_btn"}}
+          {{#link-to 'account' tagName='div'}}Home{{/link-to}}
+        {{/paper-button}}
+
         {{#paper-button warn=true class="menu_btn" onClick=(action "logout")}}Log out{{/paper-button}}
       {{/paper-content}}
     {{/paper-sidenav}}

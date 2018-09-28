@@ -12,10 +12,12 @@ export default Base.extend({
 
   async authenticate(identifier, password, apiKey, userEnv) {
     const domain = this.envToDomain(userEnv);
-    const url = domain ? `https://${domain}-api.ig.com` : `https://api.ig.com`;
+    const url = domain
+      ? `https://${domain}-api.ig.com/gateway/deal`
+      : `https://api.ig.com/gateway/deal`;
 
     try {
-      const response = await fetch(`${url}/gateway/deal/session`, {
+      const response = await fetch(`${url}/session`, {
         method: "post",
         headers: {
           Accept: "application/json; charset=UTF-8",
@@ -29,23 +31,23 @@ export default Base.extend({
         })
       });
 
-      return this._exportTokens(response);
+      return this._exportTokens(response, url, apiKey);
     } catch (err) {
       return RSVP.reject(new Error(err));
     }
   },
 
-  async _exportTokens(response) {
+  async _exportTokens(response, url, apiKey) {
     if (response.status < 200 || response.status > 400) {
       return RSVP.reject(new Error(response));
     }
 
     const json = await response.json();
+    json.domain = url;
     json.cst = response.headers.get("CST");
     json.xst = response.headers.get("X-SECURITY-TOKEN");
+    json.api = apiKey;
 
-    get(this, "session").set("data", json);
-    get(this, "session").set("isAuthenticated", true);
     return RSVP.resolve(json);
   },
 

@@ -1,0 +1,12 @@
+.account {
+  &_fav {
+    margin: 0;
+    color: paper-color($warn, "200") !important;
+  }
+
+  &_tight {
+    p {
+      margin: 0 5px;
+    }
+  }
+}

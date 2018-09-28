@@ -1,0 +1,61 @@
+{{#paper-item class="md-3-line"}}
+<div class="layout-column flex layout-align-center">
+  {{#paper-card as |card|}}
+    {{#card.title as |title|}}
+      {{#title.text as |text|}}
+        {{#text.headline class="layout-row layout-align-space-between"}}
+          <div>
+            {{item.accountName}}
+          </div>
+          <div>
+            {{#paper-button raised=false iconButton=true}}
+              {{#if item.preferred}}
+                {{paper-icon "favorite" class="account_fav"}}
+              {{else}}
+                {{paper-icon "favorite_border" class="account_fav"}}
+              {{/if}}
+            {{/paper-button}}
+          </div>
+        {{/text.headline}}
+        {{#text.subhead}}
+          {{item.accountId}} - {{item.currency}}
+        {{/text.subhead}}
+      {{/title.text}}
+    {{/card.title}}
+    {{#card.actions class="flex-100 layout-column"}}
+      <div class="flex-100 layout-row layout-align-space-between account_tight">
+        <p>
+          Avaliable
+        </p>
+        <p>
+          £{{item.balance.available}}
+        </p>
+      </div>
+      <div class="flex-100 layout-row layout-align-space-between account_tight">
+        <p>
+          Balance
+        </p>
+        <p>
+          £{{item.balance.balance}}
+        </p>
+      </div>
+      <div class="flex-100 layout-row layout-align-space-between account_tight">
+        <p>
+          Deposit
+        </p>
+        <p>
+          £{{item.balance.deposit}}
+        </p>
+      </div>
+      <div class="flex-100 layout-row layout-align-space-between account_tight">
+        <p>
+          P & L
+        </p>
+        <p>
+          £{{item.balance.profitLoss}}
+        </p>
+      </div>
+    {{/card.actions}}
+  {{/paper-card}}
+</div>
+{{/paper-item}}
